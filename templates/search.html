@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Buscar Libros</h2>
+<form method="POST" class="mb-4">
+    <div class="input-group">
+        <select name="campo" class="form-select" required>
+            <option value="titulo">Título</option>
+            <option value="autor">Autor</option>
+            <option value="genero">Género</option>
+        </select>
+        <input type="text" name="termino" class="form-control" placeholder="Buscar..." required>
+        <button class="btn btn-success">Buscar</button>
+    </div>
+</form>
+
+{% if resultados %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th><th>Autor</th><th>Género</th><th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for libro in resultados %}
+        <tr>
+            <td>{{ libro.titulo }}</td>
+            <td>{{ libro.autor }}</td>
+            <td>{{ libro.genero }}</td>
+            <td>{{ libro.estado }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}
